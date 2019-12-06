@@ -4,11 +4,20 @@
   "main": "build/graphql.js",
   "repository": "https://www.github.com/aizatto/graphql",
   "license": "MIT",
+  "scripts": {
+    "prepublish": "yarn run tsc"
+  },
   "devDependencies": {
+    "husky": "*",
     "typescript": "*"
   },
   "optionalDependencies": {
     "graphql": "*",
     "graphql-relay": "*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run tsc"
+    }
   }
 }

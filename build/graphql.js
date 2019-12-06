@@ -184,6 +184,7 @@ function connectionFromKnex(args, query, countQuery, info) {
                 case 0:
                     offset = connectionArgsToLimitAndOffset(args).offset;
                     whereQuery = addArgsToQuery(args, query);
+                    countQuery.clearOrder();
                     if (offset) {
                         query.offset(offset);
                     }

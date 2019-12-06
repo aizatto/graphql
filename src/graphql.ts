@@ -128,6 +128,8 @@ export async function connectionFromKnex<T>(
   const { offset } = connectionArgsToLimitAndOffset(args);
   const whereQuery = addArgsToQuery(args, query);
 
+  countQuery.clearOrder();
+
   if (offset) {
     query.offset(offset);
   }

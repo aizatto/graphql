@@ -3,7 +3,7 @@ import { GraphQLInt, GraphQLNonNull, GraphQLString, GraphQLList } from "graphql"
 import {
   connectionArgs as connectionArgsBase,
   connectionDefinitions as connectionDefinitionsBase,
-  ConnectionConfig as ConnectionConfigBase,
+  ConnectionConfig,
   connectionFromArraySlice,
   cursorToOffset
 } from "graphql-relay";
@@ -17,6 +17,7 @@ export const connectionArgs = {
   },
   ...connectionArgsBase
 };
+
 
 export function connectionDefinitions(config: ConnectionConfig) {
   // eslint-disable-next-line
@@ -159,8 +160,11 @@ export async function connectionFromKnex<T>(
     arrayLength: count
   });
 
+  const nodes = values.edges.map(({node}) => node);
+
   return {
     ...values,
+    nodes,
     totalCount: count
   };
 }

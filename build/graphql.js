@@ -182,7 +182,7 @@ function addArgsToQuery(args, query) {
 exports.addArgsToQuery = addArgsToQuery;
 function connectionFromKnex(args, query, countQuery, info) {
     return __awaiter(this, void 0, void 0, function () {
-        var offset, whereQuery, fields, _a, count_1, _b, rows, _c, count, values;
+        var offset, whereQuery, fields, _a, count_1, _b, rows, _c, count, values, nodes;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
@@ -208,7 +208,11 @@ function connectionFromKnex(args, query, countQuery, info) {
                         sliceStart: offset,
                         arrayLength: count
                     });
-                    return [2 /*return*/, __assign(__assign({}, values), { totalCount: count })];
+                    nodes = values.edges.map(function (_a) {
+                        var node = _a.node;
+                        return node;
+                    });
+                    return [2 /*return*/, __assign(__assign({}, values), { nodes: nodes, totalCount: count })];
             }
         });
     });

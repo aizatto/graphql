@@ -5,7 +5,7 @@
   "repository": "https://www.github.com/aizatto/graphql",
   "license": "MIT",
   "scripts": {
-    "prepublish": "yarn run tsc"
+    "prepare": "yarn run tsc"
   },
   "devDependencies": {
     "husky": "*",

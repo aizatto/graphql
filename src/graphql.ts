@@ -18,10 +18,6 @@ export const connectionArgs = {
   ...connectionArgsBase
 };
 
-interface ConnectionConfig extends ConnectionConfigBase {
-  field?: string,
-}
-
 export function connectionDefinitions(config: ConnectionConfig) {
   // eslint-disable-next-line
   if (!config.connectionFields) {

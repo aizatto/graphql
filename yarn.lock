@@ -18,6 +18,13 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@types/graphql-relay@*":
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/@types/graphql-relay/-/graphql-relay-0.4.11.tgz#ad14834a5da61e8f70072dc639320937e44d548f"
+  integrity sha512-b/dEvz8KBsUrxRbY4kBCVbef6Fm+UhWB4G8L8SYFJEd5V/hszSPnoY+k5Pf3j6As7bXHhBlbmLyJj0aJzCKE/Q==
+  dependencies:
+    graphql "^14.5.3"
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
@@ -172,7 +179,7 @@ graphql-relay@*:
   dependencies:
     prettier "^1.16.0"
 
-graphql@*:
+graphql@*, graphql@^14.5.3:
   version "14.5.8"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.8.tgz#504f3d3114cb9a0a3f359bbbcf38d9e5bf6a6b3c"
   integrity sha512-MMwmi0zlVLQKLdGiMfWkgQD7dY/TUKt4L+zgJ/aR0Howebod3aNgP5JkgvAULiR2HPVZaP2VEElqtdidHweLkg==

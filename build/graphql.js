@@ -87,11 +87,17 @@ exports.connectionArgs = __assign({ order: {
     } }, graphql_relay_1.connectionArgs);
 function connectionDefinitions(config) {
     // eslint-disable-next-line
-    config.connectionFields = {
-        totalCount: {
-            type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLInt)
-        }
+    if (!config.connectionFields) {
+        config.connectionFields = {};
+    }
+    config.connectionFields['totalCount'] = {
+        type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLInt)
     };
+    if (config.field) {
+        config.connectionFields[config.field] = {
+            type: new graphql_1.GraphQLList(config.nodeType),
+        };
+    }
     return graphql_relay_1.connectionDefinitions(config);
 }
 exports.connectionDefinitions = connectionDefinitions;

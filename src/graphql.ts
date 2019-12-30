@@ -1,8 +1,9 @@
-import { GraphQLInt, GraphQLNonNull, GraphQLString } from "graphql";
+import { GraphQLInt, GraphQLNonNull, GraphQLString, GraphQLList } from "graphql";
 
 import {
   connectionArgs as connectionArgsBase,
   connectionDefinitions as connectionDefinitionsBase,
+  ConnectionConfig as ConnectionConfigBase,
   connectionFromArraySlice,
   cursorToOffset
 } from "graphql-relay";
@@ -17,13 +18,25 @@ export const connectionArgs = {
   ...connectionArgsBase
 };
 
-export function connectionDefinitions(config) {
+interface ConnectionConfig extends ConnectionConfigBase {
+  field?: string,
+}
+
+export function connectionDefinitions(config: ConnectionConfig) {
   // eslint-disable-next-line
-  config.connectionFields = {
-    totalCount: {
-      type: new GraphQLNonNull(GraphQLInt)
-    }
+  if (!config.connectionFields) {
+    config.connectionFields = {};
+  }
+  config.connectionFields['totalCount'] = {
+    type: new GraphQLNonNull(GraphQLInt)
   };
+
+  if (config.field) {
+    config.connectionFields[config.field] = {
+      type: new GraphQLList(config.nodeType),
+    }
+  }
+
   return connectionDefinitionsBase(config);
 }
 

@@ -12,6 +12,7 @@
     "typescript": "*"
   },
   "optionalDependencies": {
+    "@types/graphql-relay": "*",
     "graphql": "*",
     "graphql-relay": "*"
   },

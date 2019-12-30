@@ -93,11 +93,9 @@ function connectionDefinitions(config) {
     config.connectionFields['totalCount'] = {
         type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLInt)
     };
-    if (config.field) {
-        config.connectionFields[config.field] = {
-            type: new graphql_1.GraphQLList(config.nodeType),
-        };
-    }
+    config.connectionFields['nodes'] = {
+        type: new graphql_1.GraphQLList(config.nodeType),
+    };
     return graphql_relay_1.connectionDefinitions(config);
 }
 exports.connectionDefinitions = connectionDefinitions;

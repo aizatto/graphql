@@ -31,10 +31,8 @@ export function connectionDefinitions(config: ConnectionConfig) {
     type: new GraphQLNonNull(GraphQLInt)
   };
 
-  if (config.field) {
-    config.connectionFields[config.field] = {
-      type: new GraphQLList(config.nodeType),
-    }
+  config.connectionFields['nodes'] = {
+    type: new GraphQLList(config.nodeType),
   }
 
   return connectionDefinitionsBase(config);

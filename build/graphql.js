@@ -79,6 +79,8 @@ var __values = (this && this.__values) || function(o) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_1 = require("graphql");
+var utilities_1 = require("./utilities");
+exports.printTypeScriptDefinitions = utilities_1.printTypeScriptDefinitions;
 var graphql_relay_1 = require("graphql-relay");
 exports.connectionArgs = __assign({ order: {
         type: graphql_1.GraphQLString

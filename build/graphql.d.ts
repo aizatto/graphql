@@ -1,3 +1,4 @@
+export { printTypeScriptDefinitions } from './utilities';
 import { ConnectionConfig } from "graphql-relay";
 export declare const connectionArgs: {
     after: {

@@ -1,4 +1,5 @@
 import { GraphQLInt, GraphQLNonNull, GraphQLString, GraphQLList } from "graphql";
+export { printTypeScriptDefinitions } from './utilities';
 
 import {
   connectionArgs as connectionArgsBase,

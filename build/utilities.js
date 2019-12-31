@@ -62,7 +62,7 @@ function printDescription(type, indent) {
 // https://www.typescriptlang.org/docs/handbook/enums.html
 function printEnum(type) {
     var output = printDescription(type);
-    output += "enum " + type.name + " {\n";
+    output += "export enum " + type.name + " {\n";
     type
         .getValues()
         .forEach(function (value) {

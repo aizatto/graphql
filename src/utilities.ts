@@ -69,7 +69,7 @@ function printDescription(type, indent = ''): string {
 // https://www.typescriptlang.org/docs/handbook/enums.html
 function printEnum(type: GraphQLEnumType): string {
   let output = printDescription(type);
-  output += `enum ${type.name} {\n`
+  output += `export enum ${type.name} {\n`
   type
     .getValues()
     .forEach((value) => {

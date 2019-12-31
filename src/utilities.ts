@@ -120,7 +120,7 @@ export function printTypeScriptDefinitions(schema: GraphQLSchema): string {
     output += printDescription(type);
     output += `export interface ${type.name} ${printInterfaces(type)}{\n`;
     if (isInterfaceType(type)) {
-      output += `  readonly __typename: string',\n`;
+      output += `  readonly __typename: string,\n`;
     } else if (isObjectType(type)) {
       output += `  readonly __typename: '${type.name}',\n`;
     }

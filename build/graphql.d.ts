@@ -1,4 +1,5 @@
-export { printTypeScriptDefinitions } from './utilities';
+import { GraphQLResolveInfo } from "graphql";
+export { printTypeScriptDefinitions, printTypeScriptArgs } from './utilities';
 import { ConnectionConfig } from "graphql-relay";
 export declare const connectionArgs: {
     after: {
@@ -25,7 +26,7 @@ export declare const argsToSortAndOrder: (args: any) => {
     column: any;
     direction: any;
 };
-export declare function fieldsFromInfo(info: any): Set<string>;
+export declare function fieldsFromInfo(info: GraphQLResolveInfo): Set<string>;
 export declare function addArgsToQuery(args: any, query: any): any;
-export declare function connectionFromKnex<T>(args: any, query: any, countQuery: any, info: any): Promise<any>;
+export declare function connectionFromKnex<T>(args: any, query: any, countQuery: any, info: GraphQLResolveInfo): Promise<any>;
 //# sourceMappingURL=graphql.d.ts.map

@@ -1,5 +1,5 @@
-import { GraphQLInt, GraphQLNonNull, GraphQLString, GraphQLList } from "graphql";
-export { printTypeScriptDefinitions } from './utilities';
+import { GraphQLInt, GraphQLNonNull, GraphQLString, GraphQLList, GraphQLResolveInfo } from "graphql";
+export { printTypeScriptDefinitions, printTypeScriptArgs } from './utilities';
 
 import {
   connectionArgs as connectionArgsBase,
@@ -69,7 +69,7 @@ export const argsToSortAndOrder = args => {
   return { column, direction };
 };
 
-function fieldsFromSelectionSet(info, selectionSet) {
+function fieldsFromSelectionSet(info: GraphQLResolveInfo, selectionSet) {
   let fields = new Set<string>();
 
   selectionSet.selections.forEach(field => {
@@ -96,7 +96,7 @@ function fieldsFromSelectionSet(info, selectionSet) {
   return fields;
 }
 
-export function fieldsFromInfo(info): Set<string> {
+export function fieldsFromInfo(info: GraphQLResolveInfo): Set<string> {
   if (
     !info ||
     !info.fieldNodes ||
@@ -132,7 +132,7 @@ export async function connectionFromKnex<T>(
   args,
   query: any,
   countQuery: any,
-  info
+  info: GraphQLResolveInfo,
 ): Promise<any> {
   const { offset } = connectionArgsToLimitAndOffset(args);
   const whereQuery = addArgsToQuery(args, query);

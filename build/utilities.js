@@ -91,7 +91,6 @@ function printTypeScriptDefinitions(schema) {
         .filter(typeFilter);
     types.forEach(function (type) {
         var inputObjectType = graphql_1.isInputObjectType(type);
-        var outputType = graphql_1.isObjectType(type);
         if (graphql_1.isEnumType(type)) {
             output += printEnum(type);
         }
@@ -105,7 +104,10 @@ function printTypeScriptDefinitions(schema) {
         }
         output += printDescription(type);
         output += "export interface " + type.name + " " + printInterfaces(type) + "{\n";
-        if (outputType || graphql_1.isInterfaceType(type)) {
+        if (graphql_1.isInterfaceType(type)) {
+            output += "  readonly __typename: string',\n";
+        }
+        else if (graphql_1.isObjectType(type)) {
             output += "  readonly __typename: '" + type.name + "',\n";
         }
         Object.values(type.getFields()).forEach(function (field) {

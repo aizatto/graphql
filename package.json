@@ -1,6 +1,6 @@
 {
   "name": "@aizatto/graphql",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "build/graphql.js",
   "repository": "https://www.github.com/aizatto/graphql",
   "license": "MIT",

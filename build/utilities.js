@@ -1,4 +1,20 @@
 "use strict";
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_1 = require("graphql");
 // https://github.com/graphql/graphql-js/blob/master/src/utilities/schemaPrinter.js
@@ -89,18 +105,26 @@ function printTypeScriptDefinitions(schema) {
     var types = Object.values(typeMap)
         .sort(function (type1, type2) { return type1.name.localeCompare(type2.name); })
         .filter(typeFilter);
+    var interfaces = new Map();
     types.forEach(function (type) {
         var inputObjectType = graphql_1.isInputObjectType(type);
         if (graphql_1.isEnumType(type)) {
             output += printEnum(type);
         }
-        if (!(graphql_1.isInterfaceType(type) ||
-            graphql_1.isObjectType(type) ||
+        if (!(graphql_1.isObjectType(type) ||
             graphql_1.isInputObjectType(type))) {
             return;
         }
         if (type.name === 'Mutation') {
             return;
+        }
+        if (graphql_1.isObjectType(type)) {
+            type.getInterfaces().forEach(function (iface) {
+                var _a;
+                var array = (_a = interfaces.get(iface.name), (_a !== null && _a !== void 0 ? _a : []));
+                array.push(type.name);
+                interfaces.set(iface.name, array);
+            });
         }
         output += printDescription(type);
         output += "export interface " + type.name + " " + printInterfaces(type) + "{\n";
@@ -119,6 +143,10 @@ function printTypeScriptDefinitions(schema) {
             output += "  readonly " + field.name + ": " + type + ",\n";
         });
         output += "}\n\n";
+    });
+    Array.from(interfaces).forEach(function (_a) {
+        var _b = __read(_a, 2), key = _b[0], value = _b[1];
+        output += "export type " + key + " = " + value.join(' | ') + ";\n";
     });
     return output;
 }

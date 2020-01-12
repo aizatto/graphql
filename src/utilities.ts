@@ -100,6 +100,8 @@ export function printTypeScriptDefinitions(schema: GraphQLSchema): string {
     .sort((type1, type2) => type1.name.localeCompare(type2.name))
     .filter(typeFilter);
 
+  const interfaces: Map<string, string[]> = new Map();
+
   types.forEach(type => {
     const inputObjectType = isInputObjectType(type);
 
@@ -107,14 +109,21 @@ export function printTypeScriptDefinitions(schema: GraphQLSchema): string {
       output += printEnum(type);
     }
 
-    if (!(isInterfaceType(type) ||
-          isObjectType(type)||
+    if (!(isObjectType(type)||
           isInputObjectType(type))) {
       return;
     }
 
     if (type.name === 'Mutation') {
       return;
+    }
+
+    if (isObjectType(type)) {
+      type.getInterfaces().forEach(iface => {
+        const array = interfaces.get(iface.name) ?? [];
+        array.push(type.name);
+        interfaces.set(iface.name, array);
+      });
     }
 
     output += printDescription(type);
@@ -136,6 +145,10 @@ export function printTypeScriptDefinitions(schema: GraphQLSchema): string {
     });
 
     output += `}\n\n`;
+  });
+
+  Array.from(interfaces).forEach(([key, value]) => {
+    output += `export type ${key} = ${value.join(' | ')};\n`
   });
 
   return output;

@@ -169,3 +169,19 @@ export async function connectionFromKnex<T>(
     totalCount: count
   };
 }
+
+export async function connectionFromDataloader(args, rows, info): Promise<any> {
+  const { offset } = connectionArgsToLimitAndOffset(args);
+  // TODO this is not true, the DataLoader is unfortunately not doing a count
+  const count = rows.length;
+
+  const values = connectionFromArraySlice(rows, args, {
+    sliceStart: offset,
+    arrayLength: count
+  });
+
+  return {
+    ...values,
+    totalCount: count
+  };
+}

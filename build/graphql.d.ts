@@ -29,4 +29,5 @@ export declare const argsToSortAndOrder: (args: any) => {
 export declare function fieldsFromInfo(info: GraphQLResolveInfo): Set<string>;
 export declare function addArgsToQuery(args: any, query: any): any;
 export declare function connectionFromKnex<T>(args: any, query: any, countQuery: any, info: GraphQLResolveInfo): Promise<any>;
+export declare function connectionFromDataloader(args: any, rows: any, info: any): Promise<any>;
 //# sourceMappingURL=graphql.d.ts.map

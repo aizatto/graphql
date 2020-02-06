@@ -221,4 +221,19 @@ function connectionFromKnex(args, query, countQuery, info) {
     });
 }
 exports.connectionFromKnex = connectionFromKnex;
+function connectionFromDataloader(args, rows, info) {
+    return __awaiter(this, void 0, void 0, function () {
+        var offset, count, values;
+        return __generator(this, function (_a) {
+            offset = connectionArgsToLimitAndOffset(args).offset;
+            count = rows.length;
+            values = graphql_relay_1.connectionFromArraySlice(rows, args, {
+                sliceStart: offset,
+                arrayLength: count
+            });
+            return [2 /*return*/, __assign(__assign({}, values), { totalCount: count })];
+        });
+    });
+}
+exports.connectionFromDataloader = connectionFromDataloader;
 //# sourceMappingURL=graphql.js.map

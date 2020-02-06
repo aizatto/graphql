@@ -8,13 +8,11 @@
     "prepare": "yarn run tsc"
   },
   "devDependencies": {
+    "@types/graphql-relay": "*",
+    "graphql-relay": "*",
+    "graphql": "*",
     "husky": "*",
     "typescript": "*"
-  },
-  "optionalDependencies": {
-    "@types/graphql-relay": "*",
-    "graphql": "*",
-    "graphql-relay": "*"
   },
   "husky": {
     "hooks": {

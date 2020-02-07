@@ -4,6 +4,12 @@ My set of reusable `graphql` functions
 yarn add @aizatto/graphql
 ```
 
+Functions:
+
+- `connectionFromKnex`
+- `connectionFromDataloader`
+- `fieldsFromInfo`
+
 Other links:
 
 - https://www.npmjs.com/package/@aizatto/graphql

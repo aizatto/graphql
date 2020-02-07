@@ -4,6 +4,11 @@
   "main": "build/graphql.js",
   "repository": "https://www.github.com/aizatto/graphql",
   "license": "MIT",
+  "author": {
+    "name": "Aizat Faiz",
+    "email": "aizat.faiz@gmail.com",
+    "url": "https://www.aizatto.com/"
+  },
   "scripts": {
     "prepare": "yarn run tsc"
   },

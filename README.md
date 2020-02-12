@@ -16,11 +16,11 @@ Other links:
 - https://github.com/aizatto/graphql
 - https://www.npmjs.com/~aizatto
 
-# FAQ
+# Known Problems
 
 ## Multiple instances of `graphql` installed
 
-When using `@aizatto/graphql` with `lerna` and different `graphql` packages, you may get this error:
+When using `@aizatto/graphql` with `yarn` and `lerna` and different `graphql` packages, you may get this error:
 
 > Ensure that there is only one instance of "graphql" in the node_modules directory. If different versions of "graphql" are the dependencies of other relied on modules, use "resolutions" to ensure only one version is installed.
 >
@@ -43,4 +43,4 @@ In the root `/package.json` include in the `workspaces` key a `nohoist` array. F
 }
 ```
 
-Learn more about [`nohoist`](https://classic.yarnpkg.com/blog/2018/02/15/nohoist/)
+Learn more about `yarn`'s [`nohoist`](https://classic.yarnpkg.com/blog/2018/02/15/nohoist/)
